@@ -1,4 +1,6 @@
 #pragma once
+#include <stdexcept>
+
 
 template <typename T>
 class LinkedStack {
@@ -28,7 +30,7 @@ private:
 	public:
 		T value;
 		Node* next;
-		Node(const T& data_item, Node* next_ptr = 0) : value(data_item), next(next_ptr) {}
+		Node(const T& data_item, Node* next_ptr = NULL) : value(data_item), next(next_ptr) { }
 	};
 
 	Node* top;
@@ -158,6 +160,7 @@ void LinkedStack<T>::_print(std::ostream& f) const {
 		f << n->value << " ";
 	}
 }
+
 
 // Surcharging the << operator
 template <typename T>

@@ -19,6 +19,12 @@
     <Filter Include="Source Files\DataStructures">
       <UniqueIdentifier>{33b1e779-a94c-4620-b2f9-d5562b356bd9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Exercice_1">
+      <UniqueIdentifier>{89cc335d-13ce-4081-b871-a72a5263a4f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Exercice_1">
+      <UniqueIdentifier>{c02541d6-1c04-43de-850f-b5cb76a32789}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -36,6 +42,12 @@
     <ClInclude Include="LinkedStack.h">
       <Filter>Header Files\DataStructures</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CardGame.h">
+      <Filter>Header Files\Exercice_1</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -50,5 +62,13 @@
     <ClCompile Include="LinkedStack.cpp">
       <Filter>Source Files\DataStructures</Filter>
     </ClCompile>
+    <ClCompile Include="CardGame.cpp">
+      <Filter>Source Files\Exercice_1</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="DataStructures.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>
