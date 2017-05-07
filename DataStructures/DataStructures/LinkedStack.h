@@ -69,8 +69,8 @@ void LinkedStack<T>::push(const T& elt) {
 // Pop an element (if there is an element to pop)
 template <typename T>
 T LinkedStack<T>::pop() {
-	if (empty) {
-		throw std::logic_error;
+	if (empty()) {
+		throw std::logic_error("Empty stack !");
 	}
 
 	T value = top->value;
@@ -96,8 +96,8 @@ int LinkedStack<T>::size() const {
 // Peek the top element of the stack (if it exists)
 template <typename T>
 const T& LinkedStack<T>::peek() const {
-	if (empty) {
-		throw std::logic_error;
+	if (empty()) {
+		throw std::logic_error("Empty stack !");
 	}
 
 	return top->value;
