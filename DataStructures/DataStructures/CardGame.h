@@ -1,6 +1,42 @@
 #pragma once
 #include "LinkedStack.h"
 
+// A card color
+enum Color { RED, BLACK };
+
+/*
+* A card, which has a color, a number and a bonus.
+*/
+struct Card {
+public:
+	Color color;
+	int number;
+	int bonus;
+
+	// Surcharging the operator <
+	friend bool operator<(const Card& l, const Card& r)
+	{
+		if (l.number < r.number) {
+			return true;
+		}
+
+		if (l.number == r.number && (l.color == Color::BLACK && r.color == Color::RED)) {
+			return true;
+		}
+
+		return false;
+	}
+
+	// Surcharging the operator ==
+	friend bool operator==(const Card& l, const Card& r)
+	{
+		return (l.number == r.number && l.color == r.color);
+	}
+};
+
+/*
+* The cardgame, which arbitrates the game.
+*/
 class CardGame
 {
 public:
@@ -8,38 +44,12 @@ public:
 	~CardGame();
 
 	void launch();
-
-	enum Color { RED, BLACK };
 private:
 
-	class Card {
-	public:
-		Color color;
-		int number;
-		int bonus;
-
-		friend bool operator<(const Card& l, const Card& r)
-		{
-			if (l.number < r.number) {
-				return true;
-			}
-
-			if (l.number == r.number && (l.color == CardGame::BLACK && r.color == CardGame::RED)) {
-				return true;
-			}
-
-			return false;
-		}
-
-		friend bool operator==(const Card& l, const Card& r)
-		{
-			return (l.number == r.number && l.color == r.color);
-		}
-	};
-
+	// The initial deck
 	LinkedStack<Card> *deck;
+	// The players' decks
 	LinkedStack<Card> *p1Deck, *p2Deck;
+	// The players' gain decks
 	LinkedStack<Card> *p1Gained, *p2Gained;
-
 };
-

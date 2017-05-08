@@ -4,11 +4,11 @@
 #include <time.h>
 #include <iostream>
 
-#define DECK_SIZE 100
+#define DECK_SIZE 100	// The size of the deck
 
 using namespace std;
 
-
+// Constructor
 CardGame::CardGame()
 {
 	srand(time(NULL));
@@ -20,7 +20,7 @@ CardGame::CardGame()
 	p2Gained = new LinkedStack<Card>();
 }
 
-
+// Destructor
 CardGame::~CardGame()
 {
 	delete deck;
@@ -30,6 +30,7 @@ CardGame::~CardGame()
 	delete p2Gained;
 }
 
+// Launch the process
 void CardGame::launch() {
 
 	// build the deck with a stack of 100 cards
@@ -45,7 +46,7 @@ void CardGame::launch() {
 	// ask to the user how many cards per player
 	int nbCardsPerPlayer = 0;
 	while (nbCardsPerPlayer < 1 || nbCardsPerPlayer > 50) {
-		cout << "How many cards per player ? (MIN :1, MAX : 50)" << endl;
+		cout << "How many cards per player ? (MIN : 1, MAX : 50)" << endl;
 		cin >> nbCardsPerPlayer;
 	}
 
@@ -78,7 +79,7 @@ void CardGame::launch() {
 		Card c = p1Gained->pop();
 
 		float auxScore = c.number * c.bonus;
-		if (c.color == CardGame::RED) {
+		if (c.color == Color::RED) {
 			auxScore *= 1.5f;
 		}
 
@@ -90,7 +91,7 @@ void CardGame::launch() {
 		Card c = p2Gained->pop();
 
 		float auxScore = c.number * c.bonus;
-		if (c.color == CardGame::RED) {
+		if (c.color == Color::RED) {
 			auxScore *= 1.5f;
 		}
 

@@ -25,37 +25,46 @@
     <Filter Include="Source Files\Exercice_1">
       <UniqueIdentifier>{c02541d6-1c04-43de-850f-b5cb76a32789}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Other">
+      <UniqueIdentifier>{9b3b0171-718a-4b54-8193-be1c5f91d4bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Other">
+      <UniqueIdentifier>{74e9ea9a-0d79-42d0-9f6c-e8bb5112ebde}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Exercice_2">
+      <UniqueIdentifier>{7f2bfc83-4ddd-4a66-a782-d19d3f661d1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Exercice_2">
+      <UniqueIdentifier>{b308e453-545c-4031-be69-2e75e684c07d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ArrayQueue.h">
       <Filter>Header Files\DataStructures</Filter>
     </ClInclude>
     <ClInclude Include="LinkedStack.h">
       <Filter>Header Files\DataStructures</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CardGame.h">
       <Filter>Header Files\Exercice_1</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="Factory.h">
+      <Filter>Header Files\Exercice_2</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ArrayQueue.cpp">
       <Filter>Source Files\DataStructures</Filter>
     </ClCompile>
@@ -64,6 +73,15 @@
     </ClCompile>
     <ClCompile Include="CardGame.cpp">
       <Filter>Source Files\Exercice_1</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Factory.cpp">
+      <Filter>Source Files\Exercice_2</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

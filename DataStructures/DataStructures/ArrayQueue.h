@@ -1,148 +1,167 @@
 #pragma once
+#include <stdexcept>
 
 template<typename T>
 class ArrayQueue
 {
 public:
+	// constructors and destructors
 	ArrayQueue(int max = 100);
 	ArrayQueue(const ArrayQueue &);
 	~ArrayQueue();
 
-	void enfiler(const T&) throw (std::length_error);
-	T defiler() throw (std::logic_error);
+	// setters
+	void add(const T&);
+	T remove() throw (std::logic_error);
 
-	int taille() const;
-	bool estVide() const;
-	bool estPleine() const;
-	const T& premier() const; // tête de la file
-	const T& dernier() const; // queue de la file
+	// getters
+	int size() const;
+	bool empty() const;
 
-	// surcharge d'opérateurs
+	// operator surcharges
 	const ArrayQueue<T>& operator = (const ArrayQueue<T>&);
 	template <typename U> friend std::ostream& operator << (std::ostream& f, const ArrayQueue<U>& q);
 
 private:
 	T* tab;
-	int tete;
-	int queue;
-	int tailleMax;
+	int head;
+	int tail;
+	int maxSize;
 	int cpt;
 
-	void _copier(T* tabS);
+	void _copy(T* tabS);
+	void _resize();
 };
 
 
-
+// Constructor
 template<typename T>
-ArrayQueue<T>::ArrayQueue(int max) throw (std::bad_alloc) {
+ArrayQueue<T>::ArrayQueue(int max) {
 	tab = new T[max];
-	tete = 0;
-	queue = 0;
+	head = 0;
+	tail = 0;
 	cpt = 0;
-	tailleMax = max;
+	maxSize = max;
 }
 
-// Destructeur
+// Destructor
 template <typename T>
 ArrayQueue<T>::~ArrayQueue() {
 	delete[] tab;
 }
 
-// Constructeur de copie
+// Copy constructor
 template<typename T>
-ArrayQueue<T>::ArrayQueue(const ArrayQueue & f) {
-	tete = f.tete;
-	queue = f.queue;
-	tailleMax = f.tailleMax;
-	cpt = f.cpt;
-	_copier(f.tab);
+ArrayQueue<T>::ArrayQueue(const ArrayQueue& q) {
+	head = q.head;
+	tail = q.tail;
+	maxSize = q.maxSize;
+	cpt = q.cpt;
+	_copier(q.tab);
 }
 
-// Enfiler
+// Add an element to the queue
 template <typename T>
-void ArrayQueue<T>::enfiler(const T& e) throw (std::length_error) {
-	if (cpt < tailleMax) {
-		tab[queue] = e;
-		queue = (queue + 1) % tailleMax;
-		cpt++;
+void ArrayQueue<T>::add(const T& e) {
+	if (cpt == maxSize) {
+		_resize();
 	}
-	else {
-		throw std::length_error("Enfiler : la file est pleine");
-	}
+	tab[tail] = e;
+	tail = (tail + 1) % maxSize;
+	cpt++;
 }
 
+// Remove an element from the queue, if there is at least one element
 template <typename T>
-T ArrayQueue<T>::defiler() throw (std::logic_error) {
-	if (cpt != 0) {
-		T element = tab[tete];
-		tete = (tete + 1) % tailleMax;
-		cpt--;
-		return element;
+T ArrayQueue<T>::remove() {
+	if (empty()) {
+		throw std::logic_error("The queue is empty !");
 	}
-	else {
-		throw std::logic_error("Defiler : la file est vide !");
-	}
+
+	T element = tab[head];
+	head = (head + 1) % maxSize;
+	cpt--;
+	return element;
 }
 
+// Get the size of the queue
 template <typename T>
-int ArrayQueue<T>::taille() const {
+int ArrayQueue<T>::size() const {
 	return cpt;
 }
 
+// Know if the queue is empty
 template <typename T>
-bool ArrayQueue<T>::estVide() const {
+bool ArrayQueue<T>::empty() const {
 	return (cpt == 0);
 }
 
+// Surcharging the operator =
 template <typename T>
-bool ArrayQueue<T>::estPleine() const {
-	return (cpt == tailleMax);
-}
+const ArrayQueue<T>& ArrayQueue<T>::operator = (const ArrayQueue<T>& q) {
 
-template <typename T>
-const T& ArrayQueue<T>::premier() const {
-	return tab[tete];
-}
-
-template <typename T>
-const T& ArrayQueue<T>::dernier() const {
-	return tab[queue];
-}
-
-template <typename T>
-const ArrayQueue<T>& ArrayQueue<T>::operator = (const ArrayQueue<T>& f) {
-
-	if (this != &f) {
+	if (this != &q) {
 
 		if (tab != 0) {
 			delete[] tab;
 		}
 
-		tete = f.tete;
-		queue = f.queue;
-		tailleMax = f.tailleMax;
-		cpt = f.cpt;
-		_copier(f.tab);
+		head = q.head;
+		tail = q.tail;
+		maxSize = q.maxSize;
+		cpt = q.cpt;
+		_copier(q.tab);
 	}
 
 	return *this;
 }
 
+// Copy a table in the current table
 template <typename T>
-void ArrayQueue<T>::_copier(T* tabS) {
-	tab = new T[tailleMax];
-	for (int i = 0; i < tailleMax; i++) {
+void ArrayQueue<T>::_copy(T* tabS) {
+	tab = new T[maxSize];
+	for (int i = 0; i < maxSize; i++) {
 		tab[i] = tabS[i];
 	}
 }
 
+// Resize the queue
 template <typename T>
-std::ostream& operator << (std::ostream& f, const ArrayQueue<T>& file) {
+void ArrayQueue<T>::_resize() {
+	// Allocate a bigger table
+	int newSize = maxSize * 2;
+	T* newTab = new T[newSize];
+
+	// Copy the values in the new table
+	int current = 0;
+	while (current < cpt) {
+		int index = (head + current) % maxSize;
+		newTab[current] = tab[index];
+		current++;
+	}
+
+	// Delete the old tab
+	delete[] tab;
+
+	// Update the attributes
+	tab = newTab;
+	maxSize = newSize;
+	tail = cpt;
+	head = 0;
+}
+
+// Surcharging the operator <<
+template <typename T>
+std::ostream& operator << (std::ostream& f, const ArrayQueue<T>& q) {
 
 	int current = 0;
-	while (current < file.cpt) {
-		int index = ((file.queue - 1) - current) % file.tailleMax;
-		f << file.tab[index] << " ";
+	while (current < q.cpt) {
+		int index = ((q.tail - 1) - current) % q.maxSize;
+
+		if (index < 0) {
+			index += q.maxSize;
+		}
+		f << q.tab[index] << " ";
 		current++;
 	}
 
