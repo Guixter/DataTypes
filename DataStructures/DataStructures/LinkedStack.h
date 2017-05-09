@@ -1,8 +1,9 @@
 #pragma once
 #include <stdexcept>
+#include "Stack.h"
 
 template <typename T>
-class LinkedStack {
+class LinkedStack : public Stack<T> {
 public:
 
 	// constructors and destructors
@@ -11,13 +12,13 @@ public:
 	~LinkedStack();
 
 	// setters
-	void push(const T& elt);
-	T pop() throw (std::logic_error);
+	void push(const T& elt) override;
+	T pop() throw (std::logic_error) override;
 
 	// getters
-	bool empty() const;
-	int size() const;
-	const T& peek() const throw (std::logic_error);
+	bool empty() const override;
+	int size() const override;
+	const T& peek() const throw (std::logic_error) override;
 
 	// operator surcharges
 	const LinkedStack<T>& operator = (const LinkedStack<T>& s);

@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <time.h>
 #include <iostream>
+#include "Stack.h"
+#include "ArrayStack.h"
 
 #define DECK_SIZE 100	// The size of the deck
 
@@ -13,11 +15,11 @@ CardGame::CardGame()
 {
 	srand(time(NULL));
 
-	deck = new LinkedStack<Card>();
-	p1Deck = new LinkedStack<Card>();
-	p2Deck = new LinkedStack<Card>();
-	p1Gained = new LinkedStack<Card>();
-	p2Gained = new LinkedStack<Card>();
+	deck = new ArrayStack<Card>();
+	p1Deck = new ArrayStack<Card>();
+	p2Deck = new ArrayStack<Card>();
+	p1Gained = new ArrayStack<Card>();
+	p2Gained = new ArrayStack<Card>();
 }
 
 // Destructor

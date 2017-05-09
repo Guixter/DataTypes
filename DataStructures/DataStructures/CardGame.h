@@ -1,5 +1,5 @@
 #pragma once
-#include "LinkedStack.h"
+#include "Stack.h"
 
 // A card color
 enum Color { RED, BLACK };
@@ -47,9 +47,9 @@ public:
 private:
 
 	// The initial deck
-	LinkedStack<Card> *deck;
+	Stack<Card> *deck;
 	// The players' decks
-	LinkedStack<Card> *p1Deck, *p2Deck;
+	Stack<Card> *p1Deck, *p2Deck;
 	// The players' gain decks
-	LinkedStack<Card> *p1Gained, *p2Gained;
+	Stack<Card> *p1Gained, *p2Gained;
 };

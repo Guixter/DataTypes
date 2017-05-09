@@ -57,7 +57,7 @@ ArrayQueue<T>::ArrayQueue(const ArrayQueue& q) {
 	tail = q.tail;
 	maxSize = q.maxSize;
 	cpt = q.cpt;
-	_copier(q.tab);
+	_copy(q.tab);
 }
 
 // Add an element to the queue
@@ -110,7 +110,7 @@ const ArrayQueue<T>& ArrayQueue<T>::operator = (const ArrayQueue<T>& q) {
 		tail = q.tail;
 		maxSize = q.maxSize;
 		cpt = q.cpt;
-		_copier(q.tab);
+		_copy(q.tab);
 	}
 
 	return *this;
