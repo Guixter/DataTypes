@@ -109,18 +109,9 @@ const T& LinkedStack<T>::peek() const {
 template <typename T>
 const LinkedStack<T>& LinkedStack<T>::operator = (const LinkedStack<T>& s) {
 	if (this != &s) {
-
-		delete 
-
-		if (tab != 0) {
-			delete[] tab;
-		}
-
-		tete = f.tete;
-		queue = f.queue;
-		tailleMax = f.tailleMax;
-		cpt = f.cpt;
-		_copier(f.tab);
+		top = s.top;
+		cpt = s.cpt;
+		_copier(s.tab);
 	}
 
 	return *this;
@@ -131,14 +122,15 @@ template <typename T>
 void LinkedStack<T>::_copy(Node* n) {
 	if (n == NULL) {
 		top = NULL;
+		cpt = 0;
 		return;
 	}
 
 	top = new Node(n->value);
-	Node* c = top;
+	Node* current = top;
 	for (; n != NULL ; n = n->next) {
-		c->next = new Node(n->value);
-		c = c->next;
+		current->next = new Node(n->value);
+		current = current->next;
 	}
 }
 

@@ -37,17 +37,23 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\DataStructures\Stack">
+      <UniqueIdentifier>{d198dd7f-1419-48db-b9d8-85643f1699b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DataStructures\Queue">
+      <UniqueIdentifier>{eb492d16-cce4-466e-96d3-229b10bcb314}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\DataStructures\Queue">
+      <UniqueIdentifier>{31e6dc13-f668-431d-872e-e6c4342b39dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\DataStructures\Stack">
+      <UniqueIdentifier>{f05f8506-6478-433f-96b3-f1ba880d3c95}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ArrayQueue.h">
-      <Filter>Header Files\DataStructures</Filter>
-    </ClInclude>
-    <ClInclude Include="LinkedStack.h">
-      <Filter>Header Files\DataStructures</Filter>
-    </ClInclude>
     <ClInclude Include="CardGame.h">
       <Filter>Header Files\Exercice_1</Filter>
     </ClInclude>
@@ -63,20 +69,26 @@
     <ClInclude Include="Factory.h">
       <Filter>Header Files\Exercice_2</Filter>
     </ClInclude>
+    <ClInclude Include="ArrayQueue.h">
+      <Filter>Header Files\DataStructures\Queue</Filter>
+    </ClInclude>
     <ClInclude Include="ArrayStack.h">
-      <Filter>Header Files\DataStructures</Filter>
+      <Filter>Header Files\DataStructures\Stack</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkedStack.h">
+      <Filter>Header Files\DataStructures\Stack</Filter>
     </ClInclude>
     <ClInclude Include="Stack.h">
-      <Filter>Header Files\DataStructures</Filter>
+      <Filter>Header Files\DataStructures\Stack</Filter>
+    </ClInclude>
+    <ClInclude Include="Queue.h">
+      <Filter>Header Files\DataStructures\Queue</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkedQueue.h">
+      <Filter>Header Files\DataStructures\Queue</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ArrayQueue.cpp">
-      <Filter>Source Files\DataStructures</Filter>
-    </ClCompile>
-    <ClCompile Include="LinkedStack.cpp">
-      <Filter>Source Files\DataStructures</Filter>
-    </ClCompile>
     <ClCompile Include="CardGame.cpp">
       <Filter>Source Files\Exercice_1</Filter>
     </ClCompile>
@@ -89,11 +101,23 @@
     <ClCompile Include="Factory.cpp">
       <Filter>Source Files\Exercice_2</Filter>
     </ClCompile>
-    <ClCompile Include="ArrayStack.cpp">
-      <Filter>Source Files\DataStructures</Filter>
-    </ClCompile>
     <ClCompile Include="Stack.cpp">
-      <Filter>Source Files\DataStructures</Filter>
+      <Filter>Source Files\DataStructures\Stack</Filter>
+    </ClCompile>
+    <ClCompile Include="ArrayStack.cpp">
+      <Filter>Source Files\DataStructures\Stack</Filter>
+    </ClCompile>
+    <ClCompile Include="LinkedStack.cpp">
+      <Filter>Source Files\DataStructures\Stack</Filter>
+    </ClCompile>
+    <ClCompile Include="ArrayQueue.cpp">
+      <Filter>Source Files\DataStructures\Queue</Filter>
+    </ClCompile>
+    <ClCompile Include="Queue.cpp">
+      <Filter>Source Files\DataStructures\Queue</Filter>
+    </ClCompile>
+    <ClCompile Include="LinkedQueue.cpp">
+      <Filter>Source Files\DataStructures\Queue</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

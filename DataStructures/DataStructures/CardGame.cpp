@@ -1,9 +1,8 @@
 #include "stdafx.h"
-#include "CardGame.h"
 #include <stdlib.h>
 #include <time.h>
 #include <iostream>
-#include "Stack.h"
+#include "CardGame.h"
 #include "ArrayStack.h"
 
 #define DECK_SIZE 100	// The size of the deck

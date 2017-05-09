@@ -1,9 +1,9 @@
 #pragma once
 #include <stdexcept>
+#include "Queue.h"
 
 template<typename T>
-class ArrayQueue
-{
+class ArrayQueue : public Queue<T> {
 public:
 	// constructors and destructors
 	ArrayQueue(int max = 100);
@@ -11,12 +11,12 @@ public:
 	~ArrayQueue();
 
 	// setters
-	void add(const T&);
-	T remove() throw (std::logic_error);
+	void add(const T&) override;
+	T remove() throw (std::logic_error) override;
 
 	// getters
-	int size() const;
-	bool empty() const;
+	int size() const override;
+	bool empty() const override;
 
 	// operator surcharges
 	const ArrayQueue<T>& operator = (const ArrayQueue<T>&);

@@ -1,13 +1,13 @@
 #pragma once
-#include "ArrayQueue.h"
+#include "Queue.h"
 
 /*
  * A machine, which can work on inputs to make an output.
  */
 struct Machine {
 	int nbInputs;
-	ArrayQueue<int>** inputs;
-	ArrayQueue<int>* output;
+	Queue<int>** inputs;
+	Queue<int>* output;
 	bool isWorking;
 	bool isBroken;
 	int nbBroken;
@@ -22,7 +22,7 @@ struct Machine {
 											workTime(countdown), workingCountdown(0), brokenCountdown(0),
 											nbInputs(inputs), output(NULL)
 	{
-		this->inputs = new ArrayQueue<int>*[inputs];
+		this->inputs = new Queue<int>*[inputs];
 	}
 
 	~Machine() {
@@ -49,10 +49,10 @@ private:
 	Machine *mh, *msk, *msh, *mp;
 
 	// The machining queues
-	ArrayQueue<int> *machiningHeads, *machiningSkirts, *machiningShafts;
+	Queue<int> *machiningHeads, *machiningSkirts, *machiningShafts;
 	// The assemblage queues
-	ArrayQueue<int> *assemblageHeads, *assemblageSkirts, *assemblageShafts;
+	Queue<int> *assemblageHeads, *assemblageSkirts, *assemblageShafts;
 	// The assembled pistons queue
-	ArrayQueue<int> *pistons;
+	Queue<int> *pistons;
 };
 
