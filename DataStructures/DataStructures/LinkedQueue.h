@@ -65,7 +65,7 @@ LinkedQueue<T>::~LinkedQueue() {
 template <typename T>
 void LinkedQueue<T>::add(const T& elt) {
 	Node* n = new Node(elt, NULL);
-	if (tail == NULL) {
+	if (empty()) {
 		head = n;
 		tail = n;
 	} else {
@@ -87,7 +87,12 @@ T LinkedQueue<T>::remove() {
 	Node* old = head;
 	head = head->next;
 	delete old;
+
 	cpt--;
+	if (empty()) {
+		tail = NULL;
+	}
+
 	return value;
 }
 
