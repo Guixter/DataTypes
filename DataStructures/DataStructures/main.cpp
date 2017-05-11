@@ -19,22 +19,8 @@ void LaunchDoubleLinkedList();
 void Menu();
 
 int main() {
-
-	Queue<int> *s = new LinkedQueue<int>();
-
-	s->add(1);
-	s->add(2);
-	s->add(3);
-
-	cout << *s << endl;
-
-	s->remove();
-
-	cout << *s << endl;
-
-	system("PAUSE");
-
-	//Menu();
+	
+	Menu();
 	return 0;
 }
 
@@ -78,6 +64,8 @@ void Menu() {
 		cout << "0 - EXIT" << endl;
 
 		cin >> choice;
+		cin.clear();
+		cin.ignore(1000, '\n');
 		cout << endl;
 
 		switch (choice) {

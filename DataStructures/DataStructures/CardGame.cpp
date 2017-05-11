@@ -49,6 +49,8 @@ void CardGame::launch() {
 	while (nbCardsPerPlayer < 1 || nbCardsPerPlayer > 50) {
 		cout << "How many cards per player ? (MIN : 1, MAX : 50)" << endl;
 		cin >> nbCardsPerPlayer;
+		cin.clear();
+		cin.ignore(1000, '\n');
 	}
 
 	// distribute the cards in 2 stacks
