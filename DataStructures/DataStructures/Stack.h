@@ -16,4 +16,16 @@ public:
 	virtual int size() const = 0;
 	// Know if the stack is empty
 	virtual bool empty() const = 0;
+	// Print the stack
+	virtual void print(std::ostream& f) const = 0;
+
+	// Surcharging the << operator
+	template <typename U> friend std::ostream& operator << (std::ostream& f, const Stack<U>& q);
 };
+
+// Surcharging the operator <<
+template <typename T>
+std::ostream& operator << (std::ostream& f, const Stack<T>& q) {
+	q.print(f);
+	return f;
+}

@@ -23,10 +23,11 @@ public:
 	int size() const override;
 	// Know if the queue is empty
 	bool empty() const override;
+	// Print the queue
+	void print(std::ostream& f) const override;
 
 	// Operator surcharges
 	const LinkedQueue<T>& operator = (const LinkedQueue<T>&);
-	template <typename U> friend std::ostream& operator << (std::ostream& f, const LinkedQueue<U>& q);
 
 private:
 
@@ -43,7 +44,7 @@ private:
 
 	void _copy(Node* n);
 	void _destroy();
-	void _print(std::ostream& f) const;
+	void _print(Node* n, std::ostream& f) const;
 };
 
 /////////////////////////////////
@@ -130,6 +131,16 @@ bool LinkedQueue<T>::empty() const {
 	return (cpt <= 0);
 }
 
+// Print a queue
+template <typename T>
+void LinkedQueue<T>::print(std::ostream& f) const {
+	_print(head, f);
+	/*
+	for (Node* n = head; n != NULL; n = n->next) {
+		f << n->value << " ";
+	}*/
+}
+
 /////////////////////////////////
 
 // Surcharging the = operator
@@ -143,13 +154,6 @@ const LinkedQueue<T>& LinkedQueue<T>::operator = (const LinkedQueue<T>& q) {
 	}
 
 	return *this;
-}
-
-// Surcharging the << operator
-template <typename T>
-std::ostream& operator << (std::ostream& f, const LinkedQueue<T>& s) {
-	s._print(f);
-	return f;
 }
 
 /////////////////////////////////
@@ -183,10 +187,11 @@ void LinkedQueue<T>::_destroy() {
 	}
 }
 
-// Print a queue
+// Print a node
 template <typename T>
-void LinkedQueue<T>::_print(std::ostream& f) const {
-	for (Node* n = head; n != NULL; n = n->next) {
+void LinkedQueue<T>::_print(Node* n, std::ostream& f) const {
+	if (n != NULL) {
+		_print(n->next, f);
 		f << n->value << " ";
 	}
 }

@@ -24,10 +24,11 @@ public:
 	int size() const override;
 	// Know if the stack is empty
 	bool empty() const override;
+	// Print the stack
+	void print(std::ostream& f) const override;
 
 	// Operator surcharges
 	const ArrayStack<T>& operator = (const ArrayStack<T>& s);
-	template <typename U> friend std::ostream& operator<< (std::ostream& f, const ArrayStack<U>& s);
 
 private:
 	T* tab;
@@ -110,6 +111,14 @@ bool ArrayStack<T>::empty() const {
 	return (top == 0);
 }
 
+// Print the stack
+template <typename T>
+void ArrayStack<T>::print(std::ostream& f) const {
+	for (int i = 0; i < top; i++) {
+		f << tab[i] << " ";
+	}
+}
+
 /////////////////////////////////
 
 // Surcharging the operator =
@@ -128,16 +137,6 @@ const ArrayStack<T>& ArrayStack<T>::operator = (const ArrayStack<T>& s) {
 	}
 
 	return *this;
-}
-
-// Surcharging the operator <<
-template <typename T>
-std::ostream& operator << (std::ostream& f, const ArrayStack<T>& s) {
-	for (int i = 0; i < top; i++) {
-		f << s.tab[i] << " ";
-	}
-
-	return f;
 }
 
 /////////////////////////////////

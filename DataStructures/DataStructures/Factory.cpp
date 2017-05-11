@@ -3,7 +3,7 @@
 #include <time.h>
 #include <iostream>
 #include "Factory.h"
-#include "LinkedQueue.h"
+#include "ArrayQueue.h"
 
 #define CARTONS_SIZE 10		// The number of pieces in every box
 #define FRAME_TIME 30		// The time of every frame, in seconds
@@ -14,13 +14,13 @@ using namespace std;
 Factory::Factory()
 {
 	srand(time(NULL));
-	machiningHeads = new LinkedQueue<int>();
-	machiningSkirts = new LinkedQueue<int>();
-	machiningShafts = new LinkedQueue<int>();
-	assemblageHeads = new LinkedQueue<int>();
-	assemblageSkirts = new LinkedQueue<int>();
-	assemblageShafts = new LinkedQueue<int>();
-	pistons = new LinkedQueue<int>();
+	machiningHeads = new ArrayQueue<int>();
+	machiningSkirts = new ArrayQueue<int>();
+	machiningShafts = new ArrayQueue<int>();
+	assemblageHeads = new ArrayQueue<int>();
+	assemblageSkirts = new ArrayQueue<int>();
+	assemblageShafts = new ArrayQueue<int>();
+	pistons = new ArrayQueue<int>();
 
 	mh = new Machine(120, 1);
 	mh->inputs[0] = machiningHeads;

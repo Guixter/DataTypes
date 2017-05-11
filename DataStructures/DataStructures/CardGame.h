@@ -32,6 +32,18 @@ public:
 	{
 		return (l.number == r.number && l.color == r.color);
 	}
+
+	// Surcharging the << operator
+	friend std::ostream& operator << (std::ostream& f, const Card& c) {
+		f << c.number;
+		if (c.color == RED) {
+			f << "R";
+		} else {
+			f << "B";
+		}
+		f << c.bonus << " ";
+		return f;
+	}
 };
 
 /*

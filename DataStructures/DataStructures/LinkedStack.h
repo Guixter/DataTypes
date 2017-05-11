@@ -24,10 +24,11 @@ public:
 	int size() const override;
 	// Know if the stack is empty
 	bool empty() const override;
+	// Print the stack
+	void print(std::ostream& f) const override;
 
 	// Operator surcharges
 	const LinkedStack<T>& operator = (const LinkedStack<T>& s);
-	template <typename U> friend std::ostream& operator<< (std::ostream& f, const LinkedStack<U>& s);
 
 private:
 
@@ -43,7 +44,7 @@ private:
 
 	void _copy(Node* n);
 	void _destroy();
-	void _print(std::ostream& f) const;
+	void _print(Node* n, std::ostream& f) const;
 };
 
 /////////////////////////////////
@@ -116,6 +117,12 @@ bool LinkedStack<T>::empty() const {
 	return (cpt <= 0);
 }
 
+// Print the stack
+template <typename T>
+void LinkedStack<T>::print(std::ostream& f) const {
+	_print(top, f);
+}
+
 /////////////////////////////////
 
 // Surcharging the = operator
@@ -128,13 +135,6 @@ const LinkedStack<T>& LinkedStack<T>::operator = (const LinkedStack<T>& s) {
 	}
 
 	return *this;
-}
-
-// Surcharging the << operator
-template <typename T>
-std::ostream& operator << (std::ostream& f, const LinkedStack<T>& s) {
-	s._print(f);
-	return f;
 }
 
 /////////////////////////////////
@@ -167,10 +167,11 @@ void LinkedStack<T>::_destroy() {
 	}
 }
 
-// Print a stack
+// Print a node
 template <typename T>
-void LinkedStack<T>::_print(std::ostream& f) const {
-	for (Node* n = top; n != NULL; n = n->next) {
+void LinkedStack<T>::_print(Node* n, std::ostream& f) const {
+	if (n != NULL) {
+		_print(n->next, f);
 		f << n->value << " ";
 	}
 }

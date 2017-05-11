@@ -23,10 +23,11 @@ public:
 	int size() const override;
 	// Know if the queue is empty
 	bool empty() const override;
+	// Print the queue
+	void print(std::ostream& f) const override;
 
 	// Operator surcharges
 	const ArrayQueue<T>& operator = (const ArrayQueue<T>&);
-	template <typename U> friend std::ostream& operator << (std::ostream& f, const ArrayQueue<U>& q);
 
 private:
 	T* tab;
@@ -117,6 +118,21 @@ bool ArrayQueue<T>::empty() const {
 	return (cpt == 0);
 }
 
+// Print the queue
+template <typename T>
+void ArrayQueue<T>::print(std::ostream& f) const {
+	int current = 0;
+	while (current < cpt) {
+		int index = ((tail - 1) - current) % maxSize;
+
+		if (index < 0) {
+			index += maxSize;
+		}
+		f << tab[index] << " ";
+		current++;
+	}
+}
+
 /////////////////////////////////
 
 // Surcharging the operator =
@@ -137,24 +153,6 @@ const ArrayQueue<T>& ArrayQueue<T>::operator = (const ArrayQueue<T>& q) {
 	}
 
 	return *this;
-}
-
-// Surcharging the operator <<
-template <typename T>
-std::ostream& operator << (std::ostream& f, const ArrayQueue<T>& q) {
-
-	int current = 0;
-	while (current < q.cpt) {
-		int index = ((q.tail - 1) - current) % q.maxSize;
-
-		if (index < 0) {
-			index += q.maxSize;
-		}
-		f << q.tab[index] << " ";
-		current++;
-	}
-
-	return f;
 }
 
 /////////////////////////////////

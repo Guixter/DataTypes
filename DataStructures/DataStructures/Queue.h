@@ -16,4 +16,16 @@ public:
 	virtual int size() const = 0;
 	// Know if the queue is empty
 	virtual bool empty() const = 0;
+	// Print the queue
+	virtual void print(std::ostream& f) const = 0;
+
+	// Surcharging the << operator
+	template <typename U> friend std::ostream& operator << (std::ostream& f, const Queue<U>& q);
 };
+
+// Surcharging the operator <<
+template <typename T>
+std::ostream& operator << (std::ostream& f, const Queue<T>& q) {
+	q.print(f);
+	return f;
+}

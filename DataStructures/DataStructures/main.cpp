@@ -4,6 +4,11 @@
 #include "CardGame.h"
 #include "Factory.h"
 
+#include "LinkedQueue.h"
+#include "ArrayQueue.h"
+#include "LinkedStack.h"
+#include "ArrayStack.h"
+
 using namespace std;
 
 void LaunchCardGame();
@@ -15,7 +20,21 @@ void Menu();
 
 int main() {
 
-	Menu();
+	Queue<int> *s = new LinkedQueue<int>();
+
+	s->add(1);
+	s->add(2);
+	s->add(3);
+
+	cout << *s << endl;
+
+	s->remove();
+
+	cout << *s << endl;
+
+	system("PAUSE");
+
+	//Menu();
 	return 0;
 }
 
