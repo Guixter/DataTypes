@@ -20,12 +20,12 @@ public:
 	virtual void print(std::ostream& f) const = 0;
 
 	// Surcharging the << operator
-	template <typename U> friend std::ostream& operator << (std::ostream& f, const Stack<U>& q);
+	template <typename U> friend std::ostream& operator << (std::ostream& f, const Stack<U>& s);
 };
 
 // Surcharging the operator <<
 template <typename T>
-std::ostream& operator << (std::ostream& f, const Stack<T>& q) {
-	q.print(f);
+std::ostream& operator << (std::ostream& f, const Stack<T>& s) {
+	s.print(f);
 	return f;
 }

@@ -49,6 +49,12 @@
     <Filter Include="Header Files\DataStructures\Stack">
       <UniqueIdentifier>{f05f8506-6478-433f-96b3-f1ba880d3c95}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\DataStructures\List">
+      <UniqueIdentifier>{a44b210e-752d-41d1-ab93-76e785634c02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DataStructures\List">
+      <UniqueIdentifier>{11dcac96-0e82-4d03-ba74-88657adb6db2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -87,6 +93,15 @@
     <ClInclude Include="LinkedQueue.h">
       <Filter>Header Files\DataStructures\Queue</Filter>
     </ClInclude>
+    <ClInclude Include="ArrayList.h">
+      <Filter>Header Files\DataStructures\List</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkedList.h">
+      <Filter>Header Files\DataStructures\List</Filter>
+    </ClInclude>
+    <ClInclude Include="List.h">
+      <Filter>Header Files\DataStructures\List</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CardGame.cpp">
@@ -118,6 +133,15 @@
     </ClCompile>
     <ClCompile Include="LinkedQueue.cpp">
       <Filter>Source Files\DataStructures\Queue</Filter>
+    </ClCompile>
+    <ClCompile Include="ArrayList.cpp">
+      <Filter>Source Files\DataStructures\List</Filter>
+    </ClCompile>
+    <ClCompile Include="LinkedList.cpp">
+      <Filter>Source Files\DataStructures\List</Filter>
+    </ClCompile>
+    <ClCompile Include="List.cpp">
+      <Filter>Source Files\DataStructures\List</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -145,12 +145,15 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ArrayList.h" />
     <ClInclude Include="ArrayQueue.h" />
     <ClInclude Include="ArrayStack.h" />
     <ClInclude Include="CardGame.h" />
     <ClInclude Include="Factory.h" />
+    <ClInclude Include="LinkedList.h" />
     <ClInclude Include="LinkedQueue.h" />
     <ClInclude Include="LinkedStack.h" />
+    <ClInclude Include="List.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Stack.h" />
@@ -158,12 +161,15 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ArrayList.cpp" />
     <ClCompile Include="ArrayQueue.cpp" />
     <ClCompile Include="ArrayStack.cpp" />
     <ClCompile Include="CardGame.cpp" />
     <ClCompile Include="Factory.cpp" />
+    <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="LinkedQueue.cpp" />
     <ClCompile Include="LinkedStack.cpp" />
+    <ClCompile Include="List.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Queue.cpp" />
     <ClCompile Include="Stack.cpp" />

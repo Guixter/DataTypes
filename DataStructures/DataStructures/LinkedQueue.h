@@ -146,11 +146,11 @@ void LinkedQueue<T>::print(std::ostream& f) const {
 // Surcharging the = operator
 template <typename T>
 const LinkedQueue<T>& LinkedQueue<T>::operator = (const LinkedQueue<T>& q) {
-	if (this != &s) {
+	if (this != &q) {
 		head = q.head;
 		tail = q.tail;
 		cpt = q.cpt;
-		_copier(q.tab);
+		_copy(q.tab);
 	}
 
 	return *this;

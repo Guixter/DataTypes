@@ -4,10 +4,13 @@
 #include "CardGame.h"
 #include "Factory.h"
 
-#include "LinkedQueue.h"
-#include "ArrayQueue.h"
-#include "LinkedStack.h"
-#include "ArrayStack.h"
+#include "LinkedList.h"
+
+/*
+- Normaliser les textes dans les exceptions
+- const T& ou T ou T& ?
+- ajouter des méthodes à queue et stack
+*/
 
 using namespace std;
 
@@ -19,8 +22,20 @@ void LaunchDoubleLinkedList();
 void Menu();
 
 int main() {
+
+	LinkedList<int> *l = new LinkedList<int>();
+	l->add(0, 1);
+	l->add(0, 2);
+	l->add(0, 3);
+	l->add(3, 4);
+	cout << *l << endl;
+
+	List<int> *l2 = new LinkedList<int>(*l);
+	cout << *l2 << endl;
+
+	system("PAUSE");
 	
-	Menu();
+	//Menu();
 	return 0;
 }
 
