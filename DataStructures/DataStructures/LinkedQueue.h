@@ -5,20 +5,26 @@
 template<typename T>
 class LinkedQueue : public Queue<T> {
 public:
-	// constructors and destructors
+	// Constructor
 	LinkedQueue();
+	// Copy constructor
 	LinkedQueue(const LinkedQueue &);
+	// Destructor
 	~LinkedQueue();
 
-	// setters
+	// Add an element to the queue
 	void add(const T&) override;
+	// Remove an element from the queue (if not empty)
 	T remove() throw (std::logic_error) override;
+	// Peek an element from the queue without removing it (if not empty)
+	T peek() const throw (std::logic_error) override;
 
-	// getters
+	// Get the size of the queue
 	int size() const override;
+	// Know if the queue is empty
 	bool empty() const override;
 
-	// operator surcharges
+	// Operator surcharges
 	const LinkedQueue<T>& operator = (const LinkedQueue<T>&);
 	template <typename U> friend std::ostream& operator << (std::ostream& f, const LinkedQueue<U>& q);
 
@@ -39,6 +45,8 @@ private:
 	void _destroy();
 	void _print(std::ostream& f) const;
 };
+
+/////////////////////////////////
 
 // Constructor
 template <typename T>
@@ -61,6 +69,8 @@ LinkedQueue<T>::~LinkedQueue() {
 	_destroy();
 }
 
+/////////////////////////////////
+
 // Add an element to the queue
 template <typename T>
 void LinkedQueue<T>::add(const T& elt) {
@@ -76,7 +86,7 @@ void LinkedQueue<T>::add(const T& elt) {
 	cpt++;
 }
 
-// Remove an element (if there is an element to remove)
+// Remove an element from the queue (if not empty)
 template <typename T>
 T LinkedQueue<T>::remove() {
 	if (empty()) {
@@ -96,17 +106,31 @@ T LinkedQueue<T>::remove() {
 	return value;
 }
 
+// Peek an element from the queue without removing it (if not empty)
+template <typename T>
+T LinkedQueue<T>::peek() const {
+	if (empty()) {
+		throw std::logic_error("Empty queue !");
+	}
+
+	return head->value;
+}
+
+/////////////////////////////////
+
+// Get the size of the queue
+template <typename T>
+int LinkedQueue<T>::size() const {
+	return cpt;
+}
+
 // Know if the queue is empty
 template <typename T>
 bool LinkedQueue<T>::empty() const {
 	return (cpt <= 0);
 }
 
-// Know the size of the queue
-template <typename T>
-int LinkedQueue<T>::size() const {
-	return cpt;
-}
+/////////////////////////////////
 
 // Surcharging the = operator
 template <typename T>
@@ -120,6 +144,15 @@ const LinkedQueue<T>& LinkedQueue<T>::operator = (const LinkedQueue<T>& q) {
 
 	return *this;
 }
+
+// Surcharging the << operator
+template <typename T>
+std::ostream& operator << (std::ostream& f, const LinkedQueue<T>& s) {
+	s._print(f);
+	return f;
+}
+
+/////////////////////////////////
 
 // Copy a queue
 template <typename T>
@@ -156,12 +189,4 @@ void LinkedQueue<T>::_print(std::ostream& f) const {
 	for (Node* n = head; n != NULL; n = n->next) {
 		f << n->value << " ";
 	}
-}
-
-
-// Surcharging the << operator
-template <typename T>
-std::ostream& operator << (std::ostream& f, const LinkedQueue<T>& s) {
-	s._print(f);
-	return f;
 }

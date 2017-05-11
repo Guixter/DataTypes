@@ -5,20 +5,26 @@
 template<typename T>
 class ArrayQueue : public Queue<T> {
 public:
-	// constructors and destructors
+	// Constructor
 	ArrayQueue(int max = 100);
+	// Copy constructor
 	ArrayQueue(const ArrayQueue &);
+	// Destructor
 	~ArrayQueue();
 
-	// setters
+	// Add an element to the queue
 	void add(const T&) override;
+	// Remove an element from the queue (if not empty)
 	T remove() throw (std::logic_error) override;
+	// Peek an element from the queue without removing it (if not empty)
+	T peek() const throw (std::logic_error) override;
 
-	// getters
+	// Get the size of the queue
 	int size() const override;
+	// Know if the queue is empty
 	bool empty() const override;
 
-	// operator surcharges
+	// Operator surcharges
 	const ArrayQueue<T>& operator = (const ArrayQueue<T>&);
 	template <typename U> friend std::ostream& operator << (std::ostream& f, const ArrayQueue<U>& q);
 
@@ -33,6 +39,7 @@ private:
 	void _resize();
 };
 
+/////////////////////////////////
 
 // Constructor
 template<typename T>
@@ -60,6 +67,8 @@ ArrayQueue<T>::ArrayQueue(const ArrayQueue& q) {
 	_copy(q.tab);
 }
 
+/////////////////////////////////
+
 // Add an element to the queue
 template <typename T>
 void ArrayQueue<T>::add(const T& e) {
@@ -71,7 +80,7 @@ void ArrayQueue<T>::add(const T& e) {
 	cpt++;
 }
 
-// Remove an element from the queue, if there is at least one element
+// Remove an element from the queue (if not empty)
 template <typename T>
 T ArrayQueue<T>::remove() {
 	if (empty()) {
@@ -84,6 +93,18 @@ T ArrayQueue<T>::remove() {
 	return element;
 }
 
+// Peek an element from the queue without removing it (if not empty)
+template <typename T>
+T ArrayQueue<T>::peek() const {
+	if (empty()) {
+		throw std::logic_error("The queue is empty !");
+	}
+
+	return tab[head];
+}
+
+/////////////////////////////////
+
 // Get the size of the queue
 template <typename T>
 int ArrayQueue<T>::size() const {
@@ -95,6 +116,8 @@ template <typename T>
 bool ArrayQueue<T>::empty() const {
 	return (cpt == 0);
 }
+
+/////////////////////////////////
 
 // Surcharging the operator =
 template <typename T>
@@ -115,6 +138,26 @@ const ArrayQueue<T>& ArrayQueue<T>::operator = (const ArrayQueue<T>& q) {
 
 	return *this;
 }
+
+// Surcharging the operator <<
+template <typename T>
+std::ostream& operator << (std::ostream& f, const ArrayQueue<T>& q) {
+
+	int current = 0;
+	while (current < q.cpt) {
+		int index = ((q.tail - 1) - current) % q.maxSize;
+
+		if (index < 0) {
+			index += q.maxSize;
+		}
+		f << q.tab[index] << " ";
+		current++;
+	}
+
+	return f;
+}
+
+/////////////////////////////////
 
 // Copy a table in the current table
 template <typename T>
@@ -148,22 +191,4 @@ void ArrayQueue<T>::_resize() {
 	maxSize = newSize;
 	tail = cpt;
 	head = 0;
-}
-
-// Surcharging the operator <<
-template <typename T>
-std::ostream& operator << (std::ostream& f, const ArrayQueue<T>& q) {
-
-	int current = 0;
-	while (current < q.cpt) {
-		int index = ((q.tail - 1) - current) % q.maxSize;
-
-		if (index < 0) {
-			index += q.maxSize;
-		}
-		f << q.tab[index] << " ";
-		current++;
-	}
-
-	return f;
 }

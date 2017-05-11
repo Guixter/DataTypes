@@ -6,21 +6,26 @@ template <typename T>
 class ArrayStack : public Stack<T> {
 public:
 
-	// constructors and destructors
+	// Constructor
 	ArrayStack(int max = 100);
+	// Copy constructor
 	ArrayStack(const ArrayStack& stack);
+	// Destructor
 	~ArrayStack();
 
-	// setters
+	// Push an element in the stack
 	void push(const T& elt) override;
+	// Pop an element from the stack (if not empty)
 	T pop() throw (std::logic_error) override;
+	// Peek an element from the stack without removing it (if not empty)
+	T peek() const throw (std::logic_error) override;
 
-	// getters
-	bool empty() const override;
+	// Get the size of the stack
 	int size() const override;
-	const T& peek() const throw (std::logic_error) override;
+	// Know if the stack is empty
+	bool empty() const override;
 
-	// operator surcharges
+	// Operator surcharges
 	const ArrayStack<T>& operator = (const ArrayStack<T>& s);
 	template <typename U> friend std::ostream& operator<< (std::ostream& f, const ArrayStack<U>& s);
 
@@ -32,6 +37,8 @@ private:
 	void _copy(T* tabS);
 	void _resize();
 };
+
+/////////////////////////////////
 
 // Constructor
 template<typename T>
@@ -55,7 +62,9 @@ ArrayStack<T>::ArrayStack(const ArrayStack& s) {
 	_copy(s.tab);
 }
 
-// Add an element to the stack
+/////////////////////////////////
+
+// Push an element in the stack
 template <typename T>
 void ArrayStack<T>::push(const T& e) {
 	if (top == maxSize) {
@@ -66,7 +75,7 @@ void ArrayStack<T>::push(const T& e) {
 	top++;
 }
 
-// Remove an element from the stack, if there is at least one element
+// Pop an element from the stack (if not empty)
 template <typename T>
 T ArrayStack<T>::pop() {
 	if (empty()) {
@@ -77,15 +86,17 @@ T ArrayStack<T>::pop() {
 	return tab[top];
 }
 
-//Get the top element of the stack, if there is at least one element
+// Peek an element from the stack without removing it (if not empty)
 template <typename T>
-const T& ArrayStack<T>::peek() const {
+T ArrayStack<T>::peek() const {
 	if (empty()) {
 		throw std::logic_error("The stack is empty !");
 	}
 
 	return tab[top - 1];
 }
+
+/////////////////////////////////
 
 // Get the size of the stack
 template <typename T>
@@ -98,6 +109,8 @@ template <typename T>
 bool ArrayStack<T>::empty() const {
 	return (top == 0);
 }
+
+/////////////////////////////////
 
 // Surcharging the operator =
 template <typename T>
@@ -116,6 +129,18 @@ const ArrayStack<T>& ArrayStack<T>::operator = (const ArrayStack<T>& s) {
 
 	return *this;
 }
+
+// Surcharging the operator <<
+template <typename T>
+std::ostream& operator << (std::ostream& f, const ArrayStack<T>& s) {
+	for (int i = 0; i < top; i++) {
+		f << s.tab[i] << " ";
+	}
+
+	return f;
+}
+
+/////////////////////////////////
 
 // Copy a table in the current table
 template <typename T>
@@ -144,14 +169,4 @@ void ArrayStack<T>::_resize() {
 	// Update the attributes
 	tab = newTab;
 	maxSize = newSize;
-}
-
-// Surcharging the operator <<
-template <typename T>
-std::ostream& operator << (std::ostream& f, const ArrayStack<T>& s) {
-	for (int i = 0; i < top; i++) {
-		f << s.tab[i] << " ";
-	}
-
-	return f;
 }
