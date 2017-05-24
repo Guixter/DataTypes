@@ -4,7 +4,7 @@
 #include "CardGame.h"
 #include "Factory.h"
 
-#include "LinkedList.h"
+#include "BinaryTree.h"
 
 /*
 - Normaliser les textes dans les exceptions
@@ -23,15 +23,7 @@ void Menu();
 
 int main() {
 
-	LinkedList<int> *l = new LinkedList<int>();
-	l->add(0, 1);
-	l->add(0, 2);
-	l->add(0, 3);
-	l->add(3, 4);
-	cout << *l << endl;
-
-	List<int> *l2 = new LinkedList<int>(*l);
-	cout << *l2 << endl;
+	BinaryTree<int> *t = new BinaryTree<int>();
 
 	system("PAUSE");
 	

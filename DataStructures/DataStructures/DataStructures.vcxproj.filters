@@ -55,6 +55,18 @@
     <Filter Include="Source Files\DataStructures\List">
       <UniqueIdentifier>{11dcac96-0e82-4d03-ba74-88657adb6db2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\DataStructures\Tree">
+      <UniqueIdentifier>{2d86bcd9-46b0-45ec-85a0-7f8299618d20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DataStructures\Tree">
+      <UniqueIdentifier>{67467769-0443-4663-890d-87e0e4d106fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Exercice_4">
+      <UniqueIdentifier>{5ddff4ad-28ba-4fab-ab00-21d6355c2dd4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Exercice_4">
+      <UniqueIdentifier>{24a2d128-7d55-4492-9997-a607fb4f847d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -102,6 +114,12 @@
     <ClInclude Include="List.h">
       <Filter>Header Files\DataStructures\List</Filter>
     </ClInclude>
+    <ClInclude Include="BinaryTree.h">
+      <Filter>Header Files\DataStructures\Tree</Filter>
+    </ClInclude>
+    <ClInclude Include="ArbreGenealogique.h">
+      <Filter>Header Files\Exercice_4</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CardGame.cpp">
@@ -142,6 +160,12 @@
     </ClCompile>
     <ClCompile Include="List.cpp">
       <Filter>Source Files\DataStructures\List</Filter>
+    </ClCompile>
+    <ClCompile Include="BinaryTree.cpp">
+      <Filter>Source Files\DataStructures\Tree</Filter>
+    </ClCompile>
+    <ClCompile Include="ArbreGenealogique.cpp">
+      <Filter>Source Files\Exercice_4</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
