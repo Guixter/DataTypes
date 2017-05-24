@@ -21,10 +21,30 @@ void LaunchFamilyTree();
 void LaunchDoubleLinkedList();
 void Menu();
 
+void print(BinaryTree<int> *t) {
+	auto _aux = [](BinaryTree<int>::Node* n) {
+		cout << "* " << n->getData() << endl;
+	};
+
+	t->applyDepthFirst(_aux, t->root());
+}
+
 int main() {
 
 	BinaryTree<int> *t = new BinaryTree<int>();
 
+
+	BTNode<int>* root = t->add(0, NULL);
+	BTNode<int>* t1 = t->add(1, root);
+	BTNode<int>* t2 = t->add(2, root);
+	cout << t->search(0) << endl;
+
+	t->add(11, t1);
+	t->add(12, t1);
+	t->add(21, t2);
+	t->add(22, t2);
+
+	print(t);
 	system("PAUSE");
 	
 	//Menu();

@@ -15,9 +15,11 @@ public:
 			this->data = elt;
 		}
 
-		T getData() {
+		T getData() const {
 			return this->data;
 		}
+
+		friend BinaryTree<T>;
 
 	private:
 		T data;
@@ -26,18 +28,6 @@ public:
 		Node* parent;
 
 		Node(T data) : data(data), parent(NULL), leftChild(NULL), rightChild(NULL) { }
-
-		void setParent(Node* parent) {
-			this->parent = parent;
-		}
-
-		void setLeftChild(Node* child) {
-			this->leftChild = child;
-		}
-
-		void setRightChild(Node* child) {
-			this->rightChild = child;
-		}
 	};
 
 	/////////////////////////////////
@@ -82,11 +72,14 @@ public:
 
 
 	// Apply a recursive function on the tree
-	template <typename U> U recursive(std::function<U(const Node, U, U)> f, Node* source, U terminal) const;
+	template <typename U> U recursive(std::function<U(Node const*, U, U)> f, Node* source, U terminal) const;
 
 private:
 	Node* _root;
 };
+
+template <typename T>
+using BTNode = typename BinaryTree<T>::Node;
 
 /////////////////////////////////
 
@@ -113,55 +106,65 @@ bool BinaryTree<T>::empty() const {
 // Get the size of the tree
 template <typename T>
 int BinaryTree<T>::size() const {
-	std::function<int(const Node, int, int)> _aux;
-	_aux = [](const Node n, int gauche, int droite) {
-		return gauche + droite + 1;
+	std::function<int(Node const*, int, int)> _aux;
+	_aux = [](Node const *n, int left, int right) {
+		return left + right + 1;
 	};
 
-	return recursif(_aux, _root, 0);
+	return recursive(_aux, _root, 0);
 }
 
 // Get the height of the tree
 template <typename T>
 int BinaryTree<T>::height() const {
-	std::function<int(const Node, int, int)> _aux;
-	_aux = [](const Node n, int gauche, int droite) {
-		if (gauche >= droite) {
-			return gauche + 1;
+	std::function<int(Node const*, int, int)> _aux;
+	_aux = [](Node const *n, int left, int right) {
+		if (left >= right) {
+			return left + 1;
 		} else {
-			return droite + 1;
+			return right + 1;
 		}
 	};
 
-	return recursif(_aux, _root, 0);
+	return recursive(_aux, _root, 0);
 }
 
 // Get the root of the tree
 template <typename T>
-typename BinaryTree<T>::Node* BinaryTree<T>::root() const {
+BTNode<T>* BinaryTree<T>::root() const {
 	return _root;
 }
 
 // Search a node in the tree
 template <typename T>
-typename BinaryTree<T>::Node* BinaryTree<T>::search(T elt) const {
-	Node *result = NULL;
-	auto _aux = [&result, elt](Node* n) {
-		if (n->data == elt) {
-			result = n;
+BTNode<T>* BinaryTree<T>::search(T elt) const {
+	std::function<Node*(Node*)> _aux;
+	_aux = [elt, &_aux](Node* n) {
+		if (n == NULL) {
+			return (Node *)NULL;
+		} else {
+			if (n->data == elt) {
+				return n;
+			} else {
+				Node * child = _aux(n->leftChild);
+				if (child != NULL) {
+					return child;
+				} else {
+					return _aux(n->rightChild);
+				}
+			}
 		}
 	};
 
-	applyDepthFirst(_aux, _root);
+	return _aux(_root);
 
-	return result;
 }
 
 /////////////////////////////////
 
 // Add a child to the parent node (or as the root if parent is null)
 template <typename T>
-typename BinaryTree<T>::Node* BinaryTree<T>::add(T childData, typename BinaryTree<T>::Node* parent, INSERTION_TYPE type) {
+BTNode<T>* BinaryTree<T>::add(T childData, Node* parent, INSERTION_TYPE type) {
 	if (parent == NULL) {
 		// Setting the root
 		if (_root != NULL) {
@@ -198,7 +201,7 @@ typename BinaryTree<T>::Node* BinaryTree<T>::add(T childData, typename BinaryTre
 
 // Remove (and deallocate) a node (and all its descendants) from the tree
 template <typename T>
-void BinaryTree<T>::remove(typename BinaryTree<T>::Node* node) {
+void BinaryTree<T>::remove(Node* node) {
 	auto _aux = [](Node* n) {
 		if (n->parent != NULL) {
 			if (n->parent->leftChild == n) {
@@ -263,14 +266,14 @@ void BinaryTree<T>::applyInOrder(std::function<void(Node* n)> f, Node* source) {
 // Apply a function in each node, with the depth-first traversal
 template <typename T>
 void BinaryTree<T>::applyDepthFirst(std::function<void(Node* n)> f, Node* source) {
-	Stack<Node*> stack = new ArrayStack<Node*>();
+	Stack<Node*> *stack = new ArrayStack<Node*>();
 	stack->push(source);
 	while (!stack->empty()) {
-		Node *n = stack.pop();
+		Node *n = stack->pop();
 		if (n != NULL) {
 			f(n);
-			stack->push(n->leftChild);
 			stack->push(n->rightChild);
+			stack->push(n->leftChild);
 		}
 	}
 }
@@ -278,10 +281,10 @@ void BinaryTree<T>::applyDepthFirst(std::function<void(Node* n)> f, Node* source
 // Apply a function in each node, with the breadth-first traversal
 template <typename T>
 void BinaryTree<T>::applyBreadthFirst(std::function<void(Node* n)> f, Node* source) {
-	Queue<Node*> queue = new ArrayQueue<Node*>();
+	Queue<Node*> *queue = new ArrayQueue<Node*>();
 	queue->add(source);
 	while (!queue->empty()) {
-		Node *n = queue.remove();
+		Node *n = queue->remove();
 		if (n != NULL) {
 			f(n);
 			queue->add(n->leftChild);
@@ -295,12 +298,12 @@ void BinaryTree<T>::applyBreadthFirst(std::function<void(Node* n)> f, Node* sour
 // Apply a recursive function on the tree
 template <typename T>
 template <typename U>
-U BinaryTree<T>::recursive(std::function<U(const Node, U, U)> f, Node* source, U terminal) const {
+U BinaryTree<T>::recursive(std::function<U(Node const*, U, U)> f, Node* source, U terminal) const {
 	if (source == NULL) {
 		return terminal;
 	}
 
 	U leftValue = recursive(f, source->leftChild, terminal);
 	U rightValue = recursive(f, source->rightChild, terminal);
-	return f(*source, leftValue, rightValue);
+	return f(source, leftValue, rightValue);
 }
