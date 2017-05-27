@@ -117,7 +117,7 @@
     <ClInclude Include="BinaryTree.h">
       <Filter>Header Files\DataStructures\Tree</Filter>
     </ClInclude>
-    <ClInclude Include="ArbreGenealogique.h">
+    <ClInclude Include="FamilyTree.h">
       <Filter>Header Files\Exercice_4</Filter>
     </ClInclude>
   </ItemGroup>
@@ -164,7 +164,7 @@
     <ClCompile Include="BinaryTree.cpp">
       <Filter>Source Files\DataStructures\Tree</Filter>
     </ClCompile>
-    <ClCompile Include="ArbreGenealogique.cpp">
+    <ClCompile Include="FamilyTree.cpp">
       <Filter>Source Files\Exercice_4</Filter>
     </ClCompile>
   </ItemGroup>

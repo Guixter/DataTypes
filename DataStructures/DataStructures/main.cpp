@@ -3,14 +3,7 @@
 #include <time.h>
 #include "CardGame.h"
 #include "Factory.h"
-
-#include "BinaryTree.h"
-
-/*
-- Normaliser les textes dans les exceptions
-- const T& ou T ou T& ?
-- ajouter des méthodes à queue et stack
-*/
+#include "FamilyTree.h"
 
 using namespace std;
 
@@ -21,33 +14,9 @@ void LaunchFamilyTree();
 void LaunchDoubleLinkedList();
 void Menu();
 
-void print(BinaryTree<int> *t) {
-	auto _aux = [](BinaryTree<int>::Node* n) {
-		cout << "* " << n->getData() << endl;
-	};
-
-	t->applyDepthFirst(_aux, t->root());
-}
-
 int main() {
-
-	BinaryTree<int> *t = new BinaryTree<int>();
-
-
-	BTNode<int>* root = t->add(0, NULL);
-	BTNode<int>* t1 = t->add(1, root);
-	BTNode<int>* t2 = t->add(2, root);
-	cout << t->search(0) << endl;
-
-	t->add(11, t1);
-	t->add(12, t1);
-	t->add(21, t2);
-	t->add(22, t2);
-
-	print(t);
-	system("PAUSE");
 	
-	//Menu();
+	Menu();
 	return 0;
 }
 
@@ -71,6 +40,8 @@ void LaunchDictionnary() {
 
 // Launch the family tree
 void LaunchFamilyTree() {
+	FamilyTree f;
+	f.launch();
 }
 
 // Launch the double linked list
@@ -81,12 +52,13 @@ void LaunchDoubleLinkedList() {
 void Menu() {
 	int choice = -1;
 	while (choice != 0) {
-		cout << "------------------------" << endl;
+		cout << endl;
+		cout << "########################" << endl;
 		cout << "Choose the exercice :" << endl << endl;
 		cout << "1 - Cardgame :" << endl;
 		cout << "2 - Factory" << endl;
 		cout << "3 - TODO" << endl;
-		cout << "4 - TODO" << endl;
+		cout << "4 - Family Tree" << endl;
 		cout << "5 - TODO" << endl;
 		cout << "0 - EXIT" << endl;
 
