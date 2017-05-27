@@ -146,6 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinaryTree.h" />
+    <ClInclude Include="Dictionnary.h" />
     <ClInclude Include="FamilyTree.h" />
     <ClInclude Include="ArrayList.h" />
     <ClInclude Include="ArrayQueue.h" />
@@ -164,6 +165,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BinaryTree.cpp" />
+    <ClCompile Include="Dictionnary.cpp" />
     <ClCompile Include="FamilyTree.cpp" />
     <ClCompile Include="ArrayList.cpp" />
     <ClCompile Include="ArrayQueue.cpp" />

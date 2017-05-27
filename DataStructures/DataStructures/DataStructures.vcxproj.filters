@@ -67,6 +67,12 @@
     <Filter Include="Header Files\Exercice_4">
       <UniqueIdentifier>{24a2d128-7d55-4492-9997-a607fb4f847d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Exercice_3">
+      <UniqueIdentifier>{11f37db4-91bf-4d77-a28d-3152999e854d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Exercice_3">
+      <UniqueIdentifier>{6fef8c41-ce5a-40a3-b09a-09d2cdaaa9d5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -120,6 +126,9 @@
     <ClInclude Include="FamilyTree.h">
       <Filter>Header Files\Exercice_4</Filter>
     </ClInclude>
+    <ClInclude Include="Dictionnary.h">
+      <Filter>Header Files\Exercice_3</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CardGame.cpp">
@@ -166,6 +175,9 @@
     </ClCompile>
     <ClCompile Include="FamilyTree.cpp">
       <Filter>Source Files\Exercice_4</Filter>
+    </ClCompile>
+    <ClCompile Include="Dictionnary.cpp">
+      <Filter>Source Files\Exercice_3</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -3,6 +3,7 @@
 #include <time.h>
 #include "CardGame.h"
 #include "Factory.h"
+#include "Dictionnary.h"
 #include "FamilyTree.h"
 
 using namespace std;
@@ -36,6 +37,8 @@ void LaunchFactory() {
 
 // Launch the dictionnary
 void LaunchDictionnary() {
+	Dictionnary d;
+	d.launch();
 }
 
 // Launch the family tree
@@ -57,7 +60,7 @@ void Menu() {
 		cout << "Choose the exercice :" << endl << endl;
 		cout << "1 - Cardgame :" << endl;
 		cout << "2 - Factory" << endl;
-		cout << "3 - TODO" << endl;
+		cout << "3 - Dictionnary" << endl;
 		cout << "4 - Family Tree" << endl;
 		cout << "5 - TODO" << endl;
 		cout << "0 - EXIT" << endl;

@@ -19,6 +19,18 @@ public:
 			return this->data;
 		}
 
+		Node* getParent() const {
+			return this->parent;
+		}
+
+		Node* getLeftChild() const {
+			return this->leftChild;
+		}
+
+		Node* getRightChild() const {
+			return this->rightChild;
+		}
+
 		friend BinaryTree<T>;
 
 	private:
