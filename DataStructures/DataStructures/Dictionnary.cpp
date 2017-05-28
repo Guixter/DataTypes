@@ -153,19 +153,52 @@ void Dictionnary::addWord(string w) {
 
 		// Search the current letter in the alternatives
 		BTNode<DCell>* n = firstChild;
-		BTNode<DCell>* lastN = NULL;
-		while (n != NULL && !(n->getData().compareLetter(w[i]))) {
-			lastN = n;
+		BTNode<DCell>* lastNode = NULL;
+		while (n != NULL && (n->getData().compareLetter(w[i]) < 0)) {
+			lastNode = n;
 			n = n->getRightChild();
 		}
 
-		// If the current letter is not in the alternatives
 		if (n == NULL) {
+			// The current letter is to be added at the end
 			DCell c;
 			c.setLetter(w[i]);
-			parent = tree->add(c, lastN, BinaryTree<DCell>::INSERTION_TYPE::RIGHT);
-		} else {
+			parent = tree->add(c, lastNode, BinaryTree<DCell>::INSERTION_TYPE::RIGHT);
+		} else if (n->getData().compareLetter(w[i]) == 0) {
+			// The current letter is in the alternatives
 			parent = n;
+		} else if (lastNode == NULL) {
+			// The current letter is to be added at the beginning
+			DCell c;
+			c.setLetter(w[i]);
+			BTNode<DCell>* newNode = new BTNode<DCell>(c);
+			BTNode<DCell>* nextNode = parent->getLeftChild();
+
+			newNode->setRightChild(nextNode);
+			if (nextNode != NULL) {
+				nextNode->setParent(newNode);
+			}
+
+			newNode->setParent(parent);
+			parent->setLeftChild(newNode);
+
+			parent = newNode;
+		} else {
+			// The current letter is to be added between two others
+			DCell c;
+			c.setLetter(w[i]);
+			BTNode<DCell>* newNode = new BTNode<DCell>(c);
+			BTNode<DCell>* nextNode = lastNode->getRightChild();
+
+			newNode->setRightChild(nextNode);
+			if (nextNode != NULL) {
+				nextNode->setParent(newNode);
+			}
+
+			newNode->setParent(lastNode);
+			lastNode->setRightChild(newNode);
+
+			parent = newNode;
 		}
 	}
 
@@ -181,11 +214,11 @@ void Dictionnary::removeWord(string w) {
 		n = n->getLeftChild();
 
 		// Search the current letter in the alternatives
-		while (n != NULL && !(n->getData().compareLetter(w[i]))) {
+		while (n != NULL && (n->getData().compareLetter(w[i]) != 0)) {
 			n = n->getRightChild();
 		}
 
-		if (n == NULL) {
+		if (n == NULL || (n->getData().compareLetter(w[i]) != 0)) {
 			return;
 		}
 	}
@@ -225,11 +258,11 @@ bool Dictionnary::searchWord(string w) const {
 		n = n->getLeftChild();
 
 		// Search the current letter in the alternatives
-		while (n != NULL && !(n->getData().compareLetter(w[i]))) {
+		while (n != NULL && (n->getData().compareLetter(w[i]) < 0)) {
 			n = n->getRightChild();
 		}
 
-		if (n == NULL) {
+		if (n == NULL || (n->getData().compareLetter(w[i]) != 0)) {
 			return false;
 		}
 	}

@@ -11,10 +11,6 @@ public:
 	// The node class, containing the data
 	class Node {
 	public:
-		void setData(T elt) {
-			this->data = elt;
-		}
-
 		T getData() const {
 			return this->data;
 		}
@@ -31,6 +27,24 @@ public:
 			return this->rightChild;
 		}
 
+		void setData(T elt) {
+			this->data = elt;
+		}
+
+		void setParent(Node* newParent) {
+			this->parent = newParent;
+		}
+
+		void setLeftChild(Node* newChild) {
+			this->leftChild = newChild;
+		}
+
+		void setRightChild(Node* newChild) {
+			this->rightChild = newChild;
+		}
+
+		Node(T data) : data(data), parent(NULL), leftChild(NULL), rightChild(NULL) { }
+
 		friend BinaryTree<T>;
 
 	private:
@@ -38,8 +52,6 @@ public:
 		Node* leftChild;
 		Node* rightChild;
 		Node* parent;
-
-		Node(T data) : data(data), parent(NULL), leftChild(NULL), rightChild(NULL) { }
 	};
 
 	/////////////////////////////////

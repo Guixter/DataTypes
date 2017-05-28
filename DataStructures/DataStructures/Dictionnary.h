@@ -12,9 +12,9 @@ struct DCell {
 public:
 	bool endOfWord;
 
-	bool compareLetter(char other) const {
+	int compareLetter(char other) const {
 		std::locale loc;
-		return (std::toupper(other, loc) == letter);
+		return (letter - std::toupper(other, loc));
 	}
 
 	void setLetter(char newLetter) {
