@@ -147,6 +147,7 @@
   <ItemGroup>
     <ClInclude Include="BinaryTree.h" />
     <ClInclude Include="Dictionnary.h" />
+    <ClInclude Include="DistributedList.h" />
     <ClInclude Include="FamilyTree.h" />
     <ClInclude Include="ArrayList.h" />
     <ClInclude Include="ArrayQueue.h" />
@@ -157,8 +158,11 @@
     <ClInclude Include="LinkedQueue.h" />
     <ClInclude Include="LinkedStack.h" />
     <ClInclude Include="List.h" />
+    <ClInclude Include="Network.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Socket.h" />
+    <ClInclude Include="SocketMessage.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -166,6 +170,7 @@
   <ItemGroup>
     <ClCompile Include="BinaryTree.cpp" />
     <ClCompile Include="Dictionnary.cpp" />
+    <ClCompile Include="DistributedList.cpp" />
     <ClCompile Include="FamilyTree.cpp" />
     <ClCompile Include="ArrayList.cpp" />
     <ClCompile Include="ArrayQueue.cpp" />
@@ -177,7 +182,10 @@
     <ClCompile Include="LinkedStack.cpp" />
     <ClCompile Include="List.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Network.cpp" />
     <ClCompile Include="Queue.cpp" />
+    <ClCompile Include="Socket.cpp" />
+    <ClCompile Include="SocketMessage.cpp" />
     <ClCompile Include="Stack.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

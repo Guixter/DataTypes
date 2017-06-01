@@ -5,6 +5,7 @@
 #include "Factory.h"
 #include "Dictionnary.h"
 #include "FamilyTree.h"
+#include "DistributedList.h"
 
 using namespace std;
 
@@ -48,7 +49,9 @@ void LaunchFamilyTree() {
 }
 
 // Launch the double linked list
-void LaunchDoubleLinkedList() {
+void LaunchDistributedList() {
+	DistributedList l;
+	l.launch();
 }
 
 // Show the menu
@@ -62,7 +65,7 @@ void Menu() {
 		cout << "2 - Factory" << endl;
 		cout << "3 - Dictionnary" << endl;
 		cout << "4 - Family Tree" << endl;
-		cout << "5 - TODO" << endl;
+		cout << "5 - Distributed List" << endl;
 		cout << "0 - EXIT" << endl;
 
 		cin >> choice;
@@ -86,7 +89,7 @@ void Menu() {
 			LaunchFamilyTree();
 			break;
 		case 5:
-			LaunchDoubleLinkedList();
+			LaunchDistributedList();
 			break;
 		default:
 			break;

@@ -73,6 +73,12 @@
     <Filter Include="Source Files\Exercice_3">
       <UniqueIdentifier>{6fef8c41-ce5a-40a3-b09a-09d2cdaaa9d5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Exercice_5">
+      <UniqueIdentifier>{a2504902-4506-4e4e-b8f0-28c9d8973c3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Exercice_5">
+      <UniqueIdentifier>{be5f3628-bb02-4382-8899-f6d8c7c3482b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -129,6 +135,18 @@
     <ClInclude Include="Dictionnary.h">
       <Filter>Header Files\Exercice_3</Filter>
     </ClInclude>
+    <ClInclude Include="Network.h">
+      <Filter>Header Files\Exercice_5</Filter>
+    </ClInclude>
+    <ClInclude Include="Socket.h">
+      <Filter>Header Files\Exercice_5</Filter>
+    </ClInclude>
+    <ClInclude Include="SocketMessage.h">
+      <Filter>Header Files\Exercice_5</Filter>
+    </ClInclude>
+    <ClInclude Include="DistributedList.h">
+      <Filter>Header Files\Exercice_5</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CardGame.cpp">
@@ -178,6 +196,18 @@
     </ClCompile>
     <ClCompile Include="Dictionnary.cpp">
       <Filter>Source Files\Exercice_3</Filter>
+    </ClCompile>
+    <ClCompile Include="Network.cpp">
+      <Filter>Source Files\Exercice_5</Filter>
+    </ClCompile>
+    <ClCompile Include="Socket.cpp">
+      <Filter>Source Files\Exercice_5</Filter>
+    </ClCompile>
+    <ClCompile Include="SocketMessage.cpp">
+      <Filter>Source Files\Exercice_5</Filter>
+    </ClCompile>
+    <ClCompile Include="DistributedList.cpp">
+      <Filter>Source Files\Exercice_5</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -45,7 +45,7 @@ public:
 
 		Node(T data) : data(data), parent(NULL), leftChild(NULL), rightChild(NULL) { }
 
-		friend BinaryTree<T>;
+		friend class BinaryTree<T>;
 
 	private:
 		T data;
