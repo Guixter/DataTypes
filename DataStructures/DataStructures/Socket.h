@@ -9,8 +9,6 @@
 
 namespace Network {
 
-	class SocketServer;
-
 	// A network socket, allowing to send and receive messages.
 	class Socket {
 	public:

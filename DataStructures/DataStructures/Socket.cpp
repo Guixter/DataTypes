@@ -57,16 +57,18 @@ namespace Network {
 	/////////////////////////////////////////
 
 	void Socket::sendMessage(SocketMessage m) {
-		char* buff = new char[2];
-		int length = 2;
+		char *buff;
+		int length = m.serialize(&buff);
 		send(sock, buff, length, 0);
 	}
 
 	SocketMessage Socket::receiveMessage() {
-		char* buff = new char[2];
-		int length = 2;
-		recv(sock, buff, length, 0);
-		return SocketMessage();
+		int length = SocketMessage::MSG_MAXSIZE;
+		char* buff = new char[length];
+		int size = recv(sock, buff, length, 0);
+
+		SocketMessage m(buff, size);
+		return m;
 	}
 
 	///////////////////////////////////////////////////////////////////////////////////
